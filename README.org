@@ -6,7 +6,7 @@
 - 下载后可运行 make 来生成 tmp/main.pdf 文件，具体的使用可以参照
 
 * 示例代码
-#+BEGIN_SRC latex
+#+BEGIN_SRC tex
 \documentclass[a4paper,12pt]{article}
 \input{data/style}
 
