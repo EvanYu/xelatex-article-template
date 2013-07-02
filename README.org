@@ -1,0 +1,170 @@
+* 简介
+这是我的latex，article类的模板。
+
+* 注意事项
+- 默认的系统是使用 Linux，如果使用其他的系统请注意修改 Makefile
+- 下载后可运行 make 来生成 tmp/main.pdf 文件，具体的使用可以参照
+
+* 示例代码
+#+BEGIN_SRC latex
+\documentclass[a4paper,12pt]{article}
+\input{data/style}
+
+\title{我的xelatex文档模板}
+\author{EvanYu}
+\date{2013年7月1日}
+
+\begin{document}
+\maketitle{}
+
+\section{说明}
+之所以制作这个模板是因为用 \LaTeX{} 这么久了，每次要写一个新的文档都从头开始未免也太麻烦了，既然了解了那么多基础的知识了就做这么一个简单的 article 模板。虽然整理这个模板花了一些时间，不过这些时间都是相当的值得的，避免了我以后的重复性工作。这个文档是这个模板使用的一个示例文档，在 README.org 文件里面也含有这部分的源代码，便于写文档时参照使用。
+
+\section{插入图片}
+图片的插入对于文档来说是一个比较重要的方面，这里我选择的是插入一个浮动的环境，然后可以添加包括 caption、label 等标签，代码如下，示例见图\ref{pic:picturelabel}。
+
+\begin{verbatim}
+\begin{figure}[h]
+\centering
+\label{pic:picturelabel}
+\includegraphics[width=\textwidth]{data/figures/9}
+\caption{\LaTeX{}图片插入}
+\end{figure}
+\end{verbatim}
+
+% 插入图片示例
+\begin{figure}[h]
+\centering
+\label{pic:picturelabel}
+\includegraphics[width=\textwidth]{data/figures/9}
+\caption{\LaTeX{}图片插入}
+\end{figure}
+
+\section{插入表格}
+\subsection{自动宽度表格}
+示例的表格见表\ref{tab:table1}。自动宽度表格看似简单，但实际上包含的元素比较多。首先是使用 tabularx 来包含的，然后使用了多行和多列的单元格。其最重要的一点在于使用了自动列宽。第一列和第三列都是自动调整的宽度，而设置的表格宽度是 \textbackslash{}textwidth，除了第一列和第三列所用的宽度，其他的都留给了第二列（具体代码如下）。
+
+\begin{verbatim}
+\begin{table}[h]
+\caption{指定宽度-列自动换行表格}\label{tab:table1}
+\centering
+\begin{tabularx}{\textwidth}{c|X|c}
+\toprule
+\multirow{2}{*}{多行} & \multicolumn{2}{c}{多列} \\
+\cline{2-3}
+& data & comment \\
+\midrule
+第一行 & 数据 & 注释 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\end{verbatim}
+% 指定表格宽度并设置自动换行示例
+\begin{table}[h]
+\caption{指定宽度-列自动换行表格}\label{tab:table1}
+\centering
+\begin{tabularx}{\textwidth}{c|X|c}
+\toprule
+\multirow{2}{*}{多行} & \multicolumn{2}{c}{多列} \\
+\cline{2-3}
+& data & comment \\
+\midrule
+第一行 & 数据 & 注释 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{斜线表格}
+斜线表格使用了 diagbox 宏包，使用这个宏包可以非常简单的做出斜线表，整个宏包只有一条命令 \textbackslash{}diagbox。两种使用方式，一种是跟两个参数，即划一条斜线；另一种是跟三个参数，即划两条斜线。具体的使用见如下的代码和表\ref{tab:table2}。
+
+\begin{verbatim}
+\begin{table}[h]
+\caption{普通表格}\label{tab:table2}
+\centering
+\begin{tabularx}{0.5\textwidth}{|l|ccc|}
+\toprule
+\diagbox{名称}{编号} & id & data & comment \\
+\midrule
+名称 & 1 & 数据 & 注释好像没有什么\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\end{verbatim}
+
+% 普通表格居中并使用diagbox示例
+\begin{table}[h]
+\caption{普通表格}\label{tab:table2}
+\centering
+\begin{tabularx}{0.5\textwidth}{|l|ccc|}
+\toprule
+\diagbox{名称}{编号} & id & data & comment \\
+\midrule
+名称 & 1 & 数据 & 注释好像没有什么\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{带脚注的表格}
+由于有的时候需要使用带脚注的表格，而对于 \LaTeX{} 来说并没有真正的脚注表格，所以使用 threeparttable 这个宏包可以制作很不错的脚注表格，表格包含在 threeparttalbe 环境内，然后在表格中需要脚注的地方使用 \textbackslash{}tnote\{number\}，然后在最后的 tablenotes 环境中使用 \textbackslash{}item [number]。表格的示例见表\ref{tab:table3}，代码见如下。
+
+\begin{verbatim}
+\begin{table}[h]
+\caption{带脚注表格}\label{tab:table3}
+\centering
+\begin{threeparttable}
+\begin{tabularx}{\textwidth}{c|X|c}
+\toprule
+\multirow{2}{*}{多行} & \multicolumn{2}{|c|}{多列} \\
+\cline{2-3}
+ & data\tnote{1} & comment \\
+\midrule
+第一行 & 数据 & 注释\tnote{2} \\
+\bottomrule
+\end{tabularx}
+\begin{tablenotes}
+\item \footnotesize{[1] 第一个脚注是data}
+\item \footnotesize{[2] 第二个脚注是注释(即\textbackslash{}tnote命令所在的位置)}
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{verbatim}
+
+% 真正的带脚注表格（并设置表格字体）
+\begin{table}[h]
+\caption{带脚注表格}\label{tab:table3}
+\centering
+\begin{threeparttable}
+\begin{tabularx}{\textwidth}{c|X|c}
+\toprule
+\multirow{2}{*}{多行} & \multicolumn{2}{c}{多列} \\
+\cline{2-3}
+ & data\tnote{1} & comment \\
+\midrule
+第一行 & 数据 & 注释\tnote{2} \\
+\bottomrule
+\end{tabularx}
+\begin{tablenotes}
+\item \footnotesize{[1] 第一个脚注是data}
+\item \footnotesize{[2] 第二个脚注是注释(即\textbackslash{}tnote命令所在的位置)}
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+% 参考文献示例
+\section{参考文献使用}
+参考文献使用的样式为 plainnat，bib 文件所在的位置为 data/reference.bib。当然，参考文献可以使用多个文件。比如我的参考文献比较多，分类存在 1.bib、2.bib 这两个文件中，可以使用命令：\textbackslash{}bibliography\{data/1.bib,data/2.bib\}。我在 data/reference.bib 文件中加入了一条记录，使用看我的右上角\cite{bib文献标记}。另外，我这里为了让参考文献在一页的开头使用了\textbackslash{}newpage 命令，空出来一页之后再添加参考文献。为了让参考文献的标题居中，在插入参考文献之前添加了如下命令：
+
+\verb|\titleformat{\section}{\centering\sanhao}{\chaptertitlename}{15pt}{}|
+
+\section{后记}
+原本我在 github 上是建立了一个 repos 的，但是总是觉得其结构不是很好，本来打算新建一个 branch 来进行结构修改，但这本身就是一个比较小的工程，所以干脆重新来过算了。暂时来说优化了以前很多的结构，也修复了一些错误。便于以后再进行修改。
+
+\newpage
+\titleformat{\section}{\centering\sanhao}{\chaptertitlename}{15pt}{}
+% 指定参考文献样式和 bib 文件
+\bibliographystyle{plainnat}
+\bibliography{data/reference}
+\end{document}
+
+#+END_SRC
