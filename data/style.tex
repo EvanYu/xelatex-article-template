@@ -15,19 +15,25 @@
 \usepackage{threeparttable} % 添加真正的表格脚注,示例见README
 
 % 字体设置
-\setCJKmainfont[BoldFont={FZXiaoBiaoSong-B05S}]{Adobe Song Std}
-\setCJKfamilyfont{kai}[BoldFont=Adobe Heiti Std]{Adobe Kaiti Std}
-\setCJKfamilyfont{song}[BoldFont=Adobe Heiti Std]{Adobe Song Std}
-\setCJKfamilyfont{hei}[BoldFont=Adobe Heiti Std]{Adobe Heiti Std}
-\setCJKfamilyfont{fsong}[BoldFont=Adobe Heiti Std]{Adobe Fangsong Std}
-\setCJKfamilyfont{fzwei}{FZBeiWeiKaiShu-S19S}
-\setCJKfamilyfont{fzsong}{FZXiaoBiaoSong-B05S}
-\newcommand{\kai}[1]{{\CJKfamily{kai}#1}}
-\newcommand{\hei}[1]{{\CJKfamily{hei}#1}}
-\newcommand{\fsong}[1]{{\CJKfamily{fsong}#1}}
-\setromanfont[Mapping=tex-text]{TeX Gyre Pagella}
-\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{TeX Gyre Pagella}
-\setmonofont[Scale=MatchLowercase]{Courier New}
+\setmainfont{Times New Roman}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{TeXGyrePagella}
+\setmonofont[Scale=MatchLowercase]{DejaVu Sans Mono}
+\setCJKmainfont[ItalicFont={Adobe Kaiti Std}, BoldFont={Adobe Heiti Std}]{Adobe Song Std}
+\setCJKsansfont{Adobe Heiti Std}
+\setCJKmonofont{Adobe Fangsong Std}
+% \setCJKmainfont[BoldFont={FZXiaoBiaoSong-B05S}]{Adobe Song Std}
+% \setCJKfamilyfont{kai}[BoldFont=Adobe Heiti Std]{Adobe Kaiti Std}
+% \setCJKfamilyfont{song}[BoldFont=Adobe Heiti Std]{Adobe Song Std}
+% \setCJKfamilyfont{hei}[BoldFont=Adobe Heiti Std]{Adobe Heiti Std}
+% \setCJKfamilyfont{fsong}[BoldFont=Adobe Heiti Std]{Adobe Fangsong Std}
+% \setCJKfamilyfont{fzwei}{FZBeiWeiKaiShu-S19S}
+% \setCJKfamilyfont{fzsong}{FZXiaoBiaoSong-B05S}
+% \newcommand{\kai}[1]{{\CJKfamily{kai}#1}}
+% \newcommand{\hei}[1]{{\CJKfamily{hei}#1}}
+% \newcommand{\fsong}[1]{{\CJKfamily{fsong}#1}}
+% \setromanfont[Mapping=tex-text]{TeXGyrePagella}
+% \setsansfont[Scale=MatchLowercase,Mapping=tex-text]{TeXGyrePagella}
+% \setmonofont[Scale=MatchLowercase]{Courier New}
 %%设置常用中文字号，方便调用
 \newcommand{\erhao}{\fontsize{22pt}{\baselineskip}\selectfont}
 \newcommand{\xiaoerhao}{\fontsize{18pt}{\baselineskip}\selectfont}
