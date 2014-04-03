@@ -14,6 +14,10 @@ endif
 # Temporary directory
 TMP = tmp
 
+# Have not contain the reference
+debug:main.tex data/article-style.tex
+	xelatex -output-directory=$(TMP) main.tex
+
 all:main.tex data/style.tex data/reference.bib
 	test -d $(TMP) || mkdir -p $(TMP) && mkdir -p $(TMP)/data
 	xelatex -output-directory=$(TMP) main.tex
@@ -21,10 +25,6 @@ all:main.tex data/style.tex data/reference.bib
 	cd $(TMP) && bibtex main
 	xelatex -output-directory=tmp main.tex
 	xelatex -output-directory=tmp main.tex
-
-# Have not contain the reference
-debug:main.tex data/article-style.tex
-	xelatex -output-directory=$(TMP) main.tex
 
 clean:
 	$(RM) $(TMP)
